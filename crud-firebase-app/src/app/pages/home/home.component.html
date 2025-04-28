@@ -1,0 +1,21 @@
+<h2>Home</h2>
+
+<button (click)="logout()">Cerrar sesión</button>
+
+<h3 *ngIf="!editMode">Agregar nuevo item</h3>
+<h3 *ngIf="editMode">Editar item</h3>
+
+<input [(ngModel)]="newItem.name" placeholder="Nombre">
+<input [(ngModel)]="newItem.description" placeholder="Descripción">
+
+<button (click)="addItem()">{{ editMode ? 'Guardar Cambios' : 'Agregar' }}</button>
+<button *ngIf="editMode" (click)="cancelEdit()">Cancelar</button>
+
+<h3>Lista de Items</h3>
+<ul>
+  <li *ngFor="let item of items">
+    {{ item.name }} - {{ item.description }}
+    <button (click)="editItem(item)">Editar</button>
+    <button (click)="deleteItem(item.id!)">Borrar</button>
+  </li>
+</ul>
